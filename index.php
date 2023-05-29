@@ -15,22 +15,26 @@ Class:<input type="text" name="stclass"><br><br>
     </body>
     
     <?php
-  include('database.php');
+    error_reporting(0);
+  include('database.php'); 
     $studentName = $_POST['stname'];
     $className = $_POST['stclass'];
-    echo $studentName;
-    echo $className;
+    // echo $studentName;
+    // echo $className;
 
 
     // Insert 
 
-    $insertQuery = "INSERT INTO `student details`(Student_Name, Student_class) VALUES (`$studentName`, `$className`)";
+    $insertQuery = "INSERT INTO users (`username`, `password`) VALUES ('$studentName', '$className');";
 
     if ($conn->query($insertQuery) === TRUE) {
-        echo "New record created successfully";
+        echo "<br> <h1 style='color: green;'> New record created successfully </h1>";
       } else {
         echo "Error: " . $insertQuery . "<br>" . $conn->error;
       }
+      $conn -> close();
 
+
+      
     ?>
 </html>
